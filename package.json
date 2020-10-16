@@ -9,7 +9,8 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "prod": "npm run build && http-server \"./dist\""
+    "prod": "http-server \"./dist\"",
+    "start": "npm run build && npm run prod"
   },
   "author": "rshuvaryk@gmail.com",
   "license": "ISC",
@@ -30,5 +31,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
