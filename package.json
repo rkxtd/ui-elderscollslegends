@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier \"src/**/*.{js,html}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "prod": "npm run build && http-server \"./dist\""
   },
   "author": "rshuvaryk@gmail.com",
   "license": "ISC",
@@ -18,6 +20,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.4",
+    "http-server": "^0.12.3",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.1.2"
   },
