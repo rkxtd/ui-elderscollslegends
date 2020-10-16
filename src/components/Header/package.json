@@ -1,3 +1,6 @@
 {
-  "main": "Header.js"
+  "main": "Header.js",
+  "devDependencies": {
+    "@babel/core": "^7.12.1"
+  }
 }

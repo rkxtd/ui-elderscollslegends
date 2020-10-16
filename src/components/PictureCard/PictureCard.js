@@ -2,10 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
@@ -14,7 +12,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PictureCard() {
+export default function PictureCard({
+  imageUrl,
+  cardName,
+  cardText,
+  cardType,
+  setName,
+}) {
   const classes = useStyles();
 
   return (
@@ -22,29 +26,26 @@ export default function PictureCard() {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="https://material-ui.com/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          alt={cardName}
+          height="560"
+          image={imageUrl}
+          title={cardName}
         />
-        <CardContent>
+        <CardContent style={{ height: 202 }}>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            {cardName}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h4">
+            Type: {cardType}
+          </Typography>
+          <Typography gutterBottom variant="h6" component="h4">
+            Set: {setName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {cardText}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
     </Card>
   );
 }
