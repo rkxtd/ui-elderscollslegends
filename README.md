@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/xcomanche/ui-elderscollslegends.svg?branch=master)](https://travis-ci.org/xcomanche/ui-elderscollslegends)
+[![Build Status](https://travis-ci.org/xcomanche/ui-elderscollslegends.svg?branch=main)](https://travis-ci.org/xcomanche/ui-elderscollslegends)
 [![dependencies Status](https://david-dm.org/xcomanche/ui-elderscollslegends/status.svg)](https://david-dm.org/xcomanche/ui-elderscollslegends)
 [![devDependencies Status](https://david-dm.org/xcomanche/ui-elderscollslegends/dev-status.svg)](https://david-dm.org/xcomanche/ui-elderscollslegends?type=dev)
 
