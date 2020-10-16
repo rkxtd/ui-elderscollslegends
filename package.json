@@ -10,7 +10,7 @@
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "prod": "http-server \"./dist\"",
-    "start": "npm run build && npm run prod"
+    "start": "npm run prod"
   },
   "author": "rshuvaryk@gmail.com",
   "license": "ISC",
