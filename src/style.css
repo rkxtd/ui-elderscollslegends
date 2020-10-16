@@ -4,5 +4,17 @@
 
 body {
     margin: 0;
-    font-family: 'B612', sans-serif;;
+    font-family: 'B612', sans-serif;
+    min-width: 480px;
+}
+
+.content {
+    height: 90vh;
+    margin-top: 56px;
+}
+
+@media (max-width: 480px) {
+    .content {
+        margin-top: 56px;
+    }
 }
