@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PictureCard from "../PictureCard";
 import Spinner from "../Spinner";
 import axios from "axios";
+import { Context as SearchContext } from "../../stores/SearchStore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,35 +23,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function loadMoreData(setCards, setPage, page) {
+async function loadMoreData(setStore, page, searchTerm, flush = false) {
   const pageSize = 20;
+  if (flush) {
+    page = 1;
+    setStore((oldStore) => ({...oldStore, hasMore: true, cards: []}));
+  }
   const {
     data: { cards },
   } = await axios(
-    `https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`
+    `https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}&name=${searchTerm}`
   );
-  setCards((oldCards) => [...oldCards, ...cards]);
-  setPage(page + 1);
+  if (flush) {
+    setStore((oldStore) => ({...oldStore, cards, page: page + 1}));
+  } else {
+    setStore((oldStore) => ({...oldStore, cards: [...oldStore.cards, ...cards], page: page + 1}));
+  }
+
+  if (!cards.length) {
+    setStore((oldStore) => ({...oldStore, hasMore: false}));
+  }
 }
 export default function HomePage() {
   const classes = useStyles();
-  const [cards, setCards] = useState([]);
-  const [page, setPage] = useState(1);
+  const [cardsStore, setStore] = useState({ cards: [], page: 1, hasMore: true });
+  const { store: SearchStore } = useContext(SearchContext);
+  const scroll = useRef(null);
 
   useEffect(() => {
-    loadMoreData(setCards, setPage, page);
-  }, []);
+    scroll.current.el.scrollTo(0,0)
+    loadMoreData(setStore, cardsStore.page, SearchStore.searchTerm, true);
+  }, [SearchStore]);
 
   const fetchMoreData = async () => {
-    return await loadMoreData(setCards, setPage, page);
+    return await loadMoreData(setStore, cardsStore.page, SearchStore.searchTerm);
   };
   return (
     <InfiniteScroll
-      dataLength={cards.length}
+      dataLength={cardsStore.cards.length}
       next={fetchMoreData}
-      hasMore={true}
+      hasMore={cardsStore.hasMore}
       loader={<Spinner />}
       height={"100vh"}
+      ref={scroll}
       endMessage={
         <p style={{ textAlign: "center" }}>
           <b>Yay! You have seen it all</b>
@@ -60,7 +75,7 @@ export default function HomePage() {
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
           <Grid container justify="center" spacing={2}>
-            {cards.map(
+            {cardsStore.cards.map(
               ({
                 id,
                 imageUrl,

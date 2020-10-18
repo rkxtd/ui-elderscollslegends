@@ -64,7 +64,7 @@ export default function PictureCard({
           <Typography gutterBottom variant="h6" component="h4">
             {cardType} / {setName}
           </Typography>
-          <Typography variant="body2" color="white" component="p">
+          <Typography variant="body2" component="p">
             {cardText}
           </Typography>
         </CardContent>

@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import { Context } from "../../stores/SearchStore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,21 +64,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
+  const { dispatch } = useContext(Context)
+  const doSearch = (value) => {
+    console.log('Search', value);
+    dispatch({ type: "search", value })
+  }
+  const handleEnter = (event) => {
+    if (event.keyCode == 13) {
+      doSearch(event.target.value);
+    }
+  };
+
+  const handleBlur = (event) => {
+    doSearch(event.target.value);
+  };
 
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Elder Scrolls: Legends
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -92,6 +97,8 @@ export default function Header() {
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
+              onKeyDown={handleEnter}
+              onBlur={handleBlur}
             />
           </div>
         </Toolbar>
