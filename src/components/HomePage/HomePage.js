@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PictureCard from "../PictureCard";
 import Spinner from "../Spinner";
-import axios from "axios";
 import { Context as SearchContext } from "../../stores/SearchStore";
+import {getCards} from "../../services/Cards";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,21 +23,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function loadMoreData(setStore, page, searchTerm, flush = false) {
-  const pageSize = 20;
+async function loadMoreData(setStore, pageNum, searchTerm, flush = false) {
   if (flush) {
-    page = 1;
+    pageNum = 1;
     setStore((oldStore) => ({...oldStore, hasMore: true, cards: []}));
   }
-  const {
-    data: { cards },
-  } = await axios(
-    `https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}&name=${searchTerm}`
-  );
+  const cards = await getCards({pageNum, searchTerm});
   if (flush) {
-    setStore((oldStore) => ({...oldStore, cards, page: page + 1}));
+    setStore((oldStore) => ({...oldStore, cards, page: pageNum + 1}));
   } else {
-    setStore((oldStore) => ({...oldStore, cards: [...oldStore.cards, ...cards], page: page + 1}));
+    setStore((oldStore) => ({...oldStore, cards: [...oldStore.cards, ...cards], page: pageNum + 1}));
   }
 
   if (!cards.length) {

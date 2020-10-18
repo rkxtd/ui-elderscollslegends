@@ -1,0 +1,6 @@
+{
+  "main": "Cards.js",
+  "devDependencies": {
+    "@babel/core": "^7.12.1"
+  }
+}
