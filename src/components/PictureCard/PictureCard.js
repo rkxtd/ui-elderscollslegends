@@ -6,34 +6,35 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
-    position: 'relative',
-    '&:hover .content': {
-      display: 'block',
+    position: "relative",
+    "&:hover .content": {
+      display: "block",
     },
-    '&:hover content': {
-      display: 'block',
+    "&:hover content": {
+      display: "block",
     },
-    '&:hover': {
-      '& $content': {
+    "&:hover": {
+      "& $content": {
         height: 200,
       },
     },
   },
   content: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    opacity: '.85',
-    width: '100%',
+    opacity: ".85",
+    width: "100%",
     height: 50,
-    transition: 'transform 0.5s',
-    transitionProperty: 'all',
+    transition: "transform 0.5s",
+    transitionProperty: "all",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+    padding: "10px 16px",
   },
 }));
 

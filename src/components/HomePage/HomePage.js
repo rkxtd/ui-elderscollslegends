@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from "react-infinite-scroll-component";
 import PictureCard from "../PictureCard";
 import Spinner from "../Spinner";
 import axios from "axios";
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   control: {
     padding: theme.spacing(2),
-  }
+  },
 }));
 
 async function loadMoreData(setCards, setPage, page) {
@@ -29,7 +29,7 @@ async function loadMoreData(setCards, setPage, page) {
   } = await axios(
     `https://api.elderscrollslegends.io/v1/cards?pageSize=${pageSize}&page=${page}`
   );
-  setCards(oldCards => [...oldCards, ...cards]);
+  setCards((oldCards) => [...oldCards, ...cards]);
   setPage(page + 1);
 }
 export default function HomePage() {
@@ -43,32 +43,32 @@ export default function HomePage() {
 
   const fetchMoreData = async () => {
     return await loadMoreData(setCards, setPage, page);
-  }
+  };
   return (
-          <InfiniteScroll
-            dataLength={cards.length}
-            next={fetchMoreData}
-            hasMore={true}
-            loader={<Spinner />}
-            height={'100vh'}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-          >
-            <Grid container className={classes.root} spacing={2}>
-            <Grid item xs={12}>
-              <Grid container justify="center" spacing={2}>
+    <InfiniteScroll
+      dataLength={cards.length}
+      next={fetchMoreData}
+      hasMore={true}
+      loader={<Spinner />}
+      height={"100vh"}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    >
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={2}>
             {cards.map(
               ({
-                 id,
-                 imageUrl,
-                 name: cardName,
-                 type: cardType,
-                 text: cardText,
-                 set: { name: setName },
-               }) => (
+                id,
+                imageUrl,
+                name: cardName,
+                type: cardType,
+                text: cardText,
+                set: { name: setName },
+              }) => (
                 <Grid key={id} item>
                   <PictureCard
                     className={classes.paper}
@@ -81,11 +81,9 @@ export default function HomePage() {
                 </Grid>
               )
             )}
-              </Grid>
-            </Grid>
           </Grid>
-
-          </InfiniteScroll>
-
+        </Grid>
+      </Grid>
+    </InfiniteScroll>
   );
 }
