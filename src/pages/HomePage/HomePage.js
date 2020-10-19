@@ -13,7 +13,11 @@ async function loadMoreData(setStore, pageNum, searchTerm, flush = false) {
     pageNum = 1;
     setStore((oldStore) => ({ ...oldStore, hasMore: true, cards: [] }));
   }
-  const cards = await getCards({ pageNum, searchTerm, pageSize: CARDS_PER_PAGE });
+  const cards = await getCards({
+    pageNum,
+    searchTerm,
+    pageSize: CARDS_PER_PAGE,
+  });
   if (flush) {
     setStore((oldStore) => ({ ...oldStore, cards, page: pageNum + 1 }));
   } else {
@@ -24,7 +28,7 @@ async function loadMoreData(setStore, pageNum, searchTerm, flush = false) {
     }));
   }
 
-  if (!cards.length < CARDS_PER_PAGE) {
+  if (cards.length < CARDS_PER_PAGE) {
     setStore((oldStore) => ({ ...oldStore, hasMore: false }));
   }
 }

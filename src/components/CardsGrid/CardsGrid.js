@@ -47,7 +47,11 @@ export default function CardsGrid({ cards }) {
               </Grid>
             )
           )}
-          {!cards.length && <Grid item><p>Looks like there are no cards!</p></Grid>}
+          {!cards.length && (
+            <Grid item>
+              <p>Looks like there are no cards!</p>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </Grid>
