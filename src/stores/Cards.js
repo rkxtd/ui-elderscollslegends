@@ -15,11 +15,18 @@ export const LOAD = "LOAD";
 export const SUCCESS = "SUCCESS";
 export const ERROR = "ERROR";
 
-export function load() { return { type: LOAD } }
-export function search(value) { return { type: SEARCH, value } }
+export function load() {
+  return { type: LOAD };
+}
+export function search(value) {
+  return { type: SEARCH, value };
+}
 export function success(cards, hasMore) {
-  return { type: SUCCESS, cards, hasMore } }
-export function error(error) { return { type: ERROR, error } }
+  return { type: SUCCESS, cards, hasMore };
+}
+export function error(error) {
+  return { type: ERROR, error };
+}
 
 export const reducer = (state, { type, value, cards, hasMore, error }) => {
   switch (type) {
@@ -31,7 +38,8 @@ export const reducer = (state, { type, value, cards, hasMore, error }) => {
         cards: [...state.cards, ...cards],
         hasMore,
         isLoading: false,
-        pageNum: state.pageNum + 1 };
+        pageNum: state.pageNum + 1,
+      };
     case ERROR:
       return { ...state, error, isLoading: false };
     case LOAD:
@@ -48,7 +56,7 @@ export const useApiRequest = (pageSize) => {
     const { pageNum, searchTerm } = state;
     dispatch(load());
     try {
-      const cards = await getCards({pageSize, pageNum, searchTerm });
+      const cards = await getCards({ pageSize, pageNum, searchTerm });
       dispatch(success(cards, cards.length === pageSize));
     } catch (e) {
       dispatch(error(e));
@@ -57,7 +65,7 @@ export const useApiRequest = (pageSize) => {
 
   const setSearch = (searchTerm) => {
     dispatch(search(searchTerm));
-  }
+  };
   return [state, makeRequest, setSearch];
 };
 

@@ -8,9 +8,14 @@ import { Context as CardsContext, useApiRequest } from "../../stores/Cards";
 const CARDS_PER_PAGE = 20;
 
 export default function Home() {
-  const { store: {searchTerm: inputSearchTerm} } = useContext(CardsContext);
-  const [{ isLoading, cards, hasMore, searchTerm },
-    dispatchLoadCardsRequest, resetSearch ] = useApiRequest(CARDS_PER_PAGE);
+  const {
+    store: { searchTerm: inputSearchTerm },
+  } = useContext(CardsContext);
+  const [
+    { isLoading, cards, hasMore, searchTerm },
+    dispatchLoadCardsRequest,
+    resetSearch,
+  ] = useApiRequest(CARDS_PER_PAGE);
   const infiniteScroll = useRef(null);
 
   // Watcher for Search Component changes.

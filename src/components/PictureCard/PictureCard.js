@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     position: "absolute",
     bottom: 0,
+    padding: "10px 16px",
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
     opacity: ".85",
@@ -34,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
     transitionProperty: "all",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    padding: "10px 16px",
   },
 }));
 
