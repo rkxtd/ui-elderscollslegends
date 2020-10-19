@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
-import { Context } from "../../stores/Search";
+import { Context, SEARCH } from "../../stores/Cards";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,12 +65,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyles();
   const { dispatch } = useContext(Context);
-  const doSearch = (value) => {
-    dispatch({ type: "search", value });
-  };
+
   const handleEnter = (event) => {
-    if (event.keyCode == 13) {
-      doSearch(event.target.value);
+    const { value } = event.target;
+    if (event.keyCode === 13) {
+      dispatch({ type: SEARCH, value });
     }
   };
   return (

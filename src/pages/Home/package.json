@@ -1,5 +1,5 @@
 {
-  "main": "HomePage.js",
+  "main": "Home.js",
   "devDependencies": {
     "@babel/core": "^7.12.1"
   }

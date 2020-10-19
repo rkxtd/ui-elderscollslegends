@@ -4,8 +4,8 @@ import { render } from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header";
-import HomePage from "./pages/HomePage";
-import { Context, initialState, reducer } from "./stores/Search";
+import Home from "./pages/Home";
+import { Context, initialState, reducer } from "./stores/Cards";
 
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState);
@@ -17,7 +17,7 @@ function App() {
           <React.Fragment>
             <CssBaseline />
             <Typography component="div" className="content">
-              <Route exact path="/" component={HomePage} />
+              <Route exact path="/" component={Home} />
             </Typography>
           </React.Fragment>
         </Router>
