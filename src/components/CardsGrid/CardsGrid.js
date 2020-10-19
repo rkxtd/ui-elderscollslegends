@@ -23,9 +23,9 @@ export default function CardsGrid({ cards }) {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={2}>
+    <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Grid container justify="center" spacing={2}>
+        <Grid container justify="center">
           {cards.map(
             ({
               id,

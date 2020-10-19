@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardsGrid from "../../components/CardsGrid";
 import Spinner from "../../components/Spinner";
 import { getCards } from "../../services/Cards";
-import { Context as SearchContext } from "../../stores/SearchStore";
+import { Context as SearchContext } from "../../stores/Search";
 
 async function loadMoreData(setStore, pageNum, searchTerm, flush = false) {
   if (flush) {

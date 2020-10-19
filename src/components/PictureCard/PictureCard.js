@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
+    margin: 10,
     position: "relative",
     "&:hover .content": {
       display: "block",
