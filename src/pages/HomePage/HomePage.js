@@ -54,16 +54,23 @@ export default function HomePage() {
       SearchStore.searchTerm
     );
   };
+
+  const { cards, hasMore } = cardsStore;
   return (
     <InfiniteScroll
-      dataLength={cardsStore.cards.length}
+      dataLength={cards.length}
       next={fetchMoreData}
-      hasMore={cardsStore.hasMore}
+      hasMore={hasMore}
       loader={<Spinner />}
       height={"100vh"}
       ref={scroll}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          {!cards.length && "Looks like there are no more cards!"}
+        </p>
+      }
     >
-      <CardsGrid cards={cardsStore.cards} />
+      <CardsGrid cards={cards} />
     </InfiniteScroll>
   );
 }
