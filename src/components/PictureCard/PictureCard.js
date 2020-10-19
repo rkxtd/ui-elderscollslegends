@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
@@ -50,26 +49,24 @@ export default function PictureCard({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={cardName}
-          height="560"
-          image={imageUrl}
-          title={cardName}
-        />
-        <CardContent className={classes.content}>
-          <Typography gutterBottom variant="h5" component="h3">
-            {cardName}
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h4">
-            {cardType} / {setName}
-          </Typography>
-          <Typography variant="body2" component="p">
-            {cardText}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia
+        component="img"
+        alt={cardName}
+        height="560"
+        image={imageUrl}
+        title={cardName}
+      />
+      <CardContent className={classes.content}>
+        <Typography gutterBottom variant="h5" component="h3">
+          {cardName}
+        </Typography>
+        <Typography gutterBottom variant="h6" component="h4">
+          {cardType} / {setName}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {cardText}
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
