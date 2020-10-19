@@ -4,6 +4,10 @@
 
 # UI For Elder Scrolls: Legends DataBase.
 
+## Demo
+You could take a look at https://ui-elderscrollslegends.herokuapp.com/
+In case Build Status is green - Heroku should have a latest version of the sources deployed.
+ 
 ## Usage
 * `npm run test` Run Unit Tests.
 * `npm run dev` Run Dev Server with Hot Reload enabled by default.
