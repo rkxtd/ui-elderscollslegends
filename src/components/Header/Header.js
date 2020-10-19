@@ -64,21 +64,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
   const classes = useStyles();
-  const { dispatch } = useContext(Context)
+  const { dispatch } = useContext(Context);
   const doSearch = (value) => {
-    console.log('Search', value);
-    dispatch({ type: "search", value })
-  }
+    dispatch({ type: "search", value });
+  };
   const handleEnter = (event) => {
     if (event.keyCode == 13) {
       doSearch(event.target.value);
     }
   };
-
-  const handleBlur = (event) => {
-    doSearch(event.target.value);
-  };
-
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
@@ -98,7 +92,6 @@ export default function Header() {
               }}
               inputProps={{ "aria-label": "search" }}
               onKeyDown={handleEnter}
-              onBlur={handleBlur}
             />
           </div>
         </Toolbar>

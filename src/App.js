@@ -4,12 +4,8 @@ import { render } from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header";
-import HomePage from "./components/HomePage";
-import {
-  Context,
-  initialState,
-  reducer
-} from './stores/SearchStore';
+import HomePage from "./pages/HomePage";
+import { Context, initialState, reducer } from "./stores/SearchStore";
 
 function App() {
   const [store, dispatch] = useReducer(reducer, initialState);
