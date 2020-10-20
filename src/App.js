@@ -1,13 +1,12 @@
 import React, { useReducer } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { render } from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import { Context, initialState, reducer } from "./stores/Cards";
 
-function App() {
+export default function App() {
   const [store, dispatch] = useReducer(reducer, initialState);
   return (
     <Context.Provider value={{ store, dispatch }}>
@@ -25,5 +24,3 @@ function App() {
     </Context.Provider>
   );
 }
-
-render(<App />, document.querySelector("#app"));
