@@ -16,7 +16,7 @@ import {
  * Should be between 1 and 100.
  * @returns {[CardsState, Promise<makeRequest>,setSearch]}
  */
-export const useCardApiRequest = (pageSize) => {
+export const useCardsApiRequest = (pageSize) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   /**
    * Function for retrieving next available cards from API.
@@ -36,7 +36,7 @@ export const useCardApiRequest = (pageSize) => {
       const cards = await getCards({ pageSize, pageNum, searchTerm });
       dispatch(success(cards, cards.length === pageSize));
     } catch (e) {
-      dispatch(error(e));
+      dispatch(error(e.message));
     }
   };
 

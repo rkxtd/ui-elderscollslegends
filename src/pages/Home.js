@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardsGrid from "../components/CardsGrid";
 import Spinner from "../components/Spinner";
 import { Context as CardsContext } from "../stores/Cards";
-import { useCardApiRequest } from "../hooks/Cards";
+import { useCardsApiRequest } from "../hooks/Cards";
 
 const CARDS_PER_PAGE = 20;
 
@@ -13,10 +13,10 @@ export default function Home() {
     store: { searchTerm: inputSearchTerm },
   } = useContext(CardsContext);
   const [
-    { isLoading, cards, hasMore, searchTerm },
+    { isLoading, cards, hasMore, searchTerm, error },
     dispatchLoadCardsRequest,
     resetSearch,
-  ] = useCardApiRequest(CARDS_PER_PAGE);
+  ] = useCardsApiRequest(CARDS_PER_PAGE);
 
   // Watcher for Search Component changes.
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Home() {
         </p>
       }
     >
-      <CardsGrid cards={cards} />
+      <CardsGrid cards={cards} errorMessage={error} />
       {isLoading && <Spinner />}
     </InfiniteScroll>
   );

@@ -25,14 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardsGrid({ cards, error }) {
+export default function CardsGrid({ cards, errorMessage }) {
   const classes = useStyles();
-
   return (
     <Grid container className={classes.root}>
-      {error && (
+      {errorMessage && (
         <Alert className={classes.error} severity="error">
-          {error}
+          {errorMessage}
         </Alert>
       )}
       <Grid item xs={12}>
