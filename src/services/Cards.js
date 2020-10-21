@@ -8,7 +8,7 @@ const PAGE_SIZE = 100;
  * Retrieve cards from ElderScrolls API.
  * Creates abstraction over transport layer, and 3rd party API.
  * @api
- * @param options
+ * @param {object} options - params for API.
  * @returns {Promise<*>}
  */
 export async function getCards(options) {

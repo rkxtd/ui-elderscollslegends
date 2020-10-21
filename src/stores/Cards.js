@@ -18,20 +18,45 @@ export const initialState = {
   error: "",
 };
 
+// Action Types
 export const SEARCH = "SEARCH";
 export const LOAD = "LOAD";
 export const SUCCESS = "SUCCESS";
 export const ERROR = "ERROR";
 
+// Actions
+/**
+ * Dispatched to show that the store is loading a data.
+ * @returns {{type: string}}
+ */
 export function load() {
   return { type: LOAD };
 }
+
+/**
+ * Dispatched to clear the store from old data and set new search term.
+ * @param {string} value - New Search Term.
+ * @returns {{type: string, value: string}}
+ */
 export function search(value) {
   return { type: SEARCH, value };
 }
+
+/**
+ * Dispatched when data is successfully loaded.
+ * @param {array<object>} cards - List of cards received from an API.
+ * @param {boolean} hasMore - Indicates whether or not API has more data to load.
+ * @returns {{cards: array, hasMore: boolean, type: string}}
+ */
 export function success(cards, hasMore) {
   return { type: SUCCESS, cards, hasMore };
 }
+
+/**
+ * Dispatched in case error happens during api request.
+ * @param {string} error - Error message.
+ * @returns {{type: string, error: string}}
+ */
 export function error(error) {
   return { type: ERROR, error };
 }
@@ -39,6 +64,7 @@ export function error(error) {
 export const reducer = (state, { type, value, cards, hasMore, error }) => {
   switch (type) {
     case SEARCH:
+      // When Search happens, we should overwrite existing state with initial one.
       return { ...initialState, searchTerm: value };
     case SUCCESS:
       return {
