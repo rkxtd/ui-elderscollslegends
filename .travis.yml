@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '10'
 script:
-- npm run test
+- npm run testreport
 - npm run build
 deploy:
   app: ui-elderscrollslegends
