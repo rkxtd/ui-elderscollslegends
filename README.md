@@ -13,7 +13,7 @@ In case Build Status is green - Heroku should have a latest version of the sourc
 You should have [npm](https://www.npmjs.com/get-npm), and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) installed.
 
 ## Getting Started
-1. Checkout repository: `git checkout https://github.com/xcomanche/ui-elderscollslegends.git`
+1. Checkout repository: `git clone https://github.com/xcomanche/ui-elderscollslegends.git`
 1. Go into project directory: `cd ui-elderscollslegends`
 1. Install npm dependencies `npm i` 
 1. Run project: `npm run dev`
