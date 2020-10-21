@@ -1,7 +1,9 @@
-import Grid from "@material-ui/core/Grid";
-import PictureCard from "../PictureCard";
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
+
+import PictureCard from "../PictureCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     maxWidth: 1280,
     margin: "auto",
+  },
+  error: {
+    width: "100%",
+    padding: 20,
   },
   paper: {
     height: 340,
@@ -19,11 +25,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardsGrid({ cards }) {
+export default function CardsGrid({ cards, error }) {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.root}>
+      {error && (
+        <Alert className={classes.error} severity="error">
+          {error}
+        </Alert>
+      )}
       <Grid item xs={12}>
         <Grid container justify="center">
           {cards.map(

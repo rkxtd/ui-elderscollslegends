@@ -1,6 +1,14 @@
-import React, { useReducer } from "react";
-import { getCards } from "../services/Cards";
+import React from "react";
 
+/**
+ * @typedef {Object} CardsState
+ * @property {string} searchTerm - Indicates whether the Search Component send any value.
+ * @property {boolean} isLoading - Indicates whether the store in the process of loading data.
+ * @property {array} cards - List of Cards, received from API.
+ * @property {boolean} hasMore - Indicates whether the API has more cards to load.
+ * @property {boolean} pageNum - Indicates number of pages were loaded.
+ * @property {string} error - Indicates whether any error did happen.
+ */
 export const initialState = {
   searchTerm: "",
   isLoading: false,
@@ -47,26 +55,6 @@ export const reducer = (state, { type, value, cards, hasMore, error }) => {
     default:
       return state;
   }
-};
-
-export const useApiRequest = (pageSize) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const makeRequest = async () => {
-    const { pageNum, searchTerm } = state;
-    dispatch(load());
-    try {
-      const cards = await getCards({ pageSize, pageNum, searchTerm });
-      dispatch(success(cards, cards.length === pageSize));
-    } catch (e) {
-      dispatch(error(e));
-    }
-  };
-
-  const setSearch = (searchTerm) => {
-    dispatch(search(searchTerm));
-  };
-  return [state, makeRequest, setSearch];
 };
 
 export const Context = React.createContext();

@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import CardsGrid from "../components/CardsGrid";
 import Spinner from "../components/Spinner";
-import { Context as CardsContext, useApiRequest } from "../stores/Cards";
+import { Context as CardsContext } from "../stores/Cards";
+import { useCardApiRequest } from "../hooks/Cards";
 
 const CARDS_PER_PAGE = 20;
 
@@ -15,12 +16,10 @@ export default function Home() {
     { isLoading, cards, hasMore, searchTerm },
     dispatchLoadCardsRequest,
     resetSearch,
-  ] = useApiRequest(CARDS_PER_PAGE);
-  const infiniteScroll = useRef(null);
+  ] = useCardApiRequest(CARDS_PER_PAGE);
 
   // Watcher for Search Component changes.
   useEffect(() => {
-    infiniteScroll.current.el.scrollTo(0, 0);
     // Trigger searchTerm change in store.
     resetSearch(inputSearchTerm);
   }, [inputSearchTerm]);
@@ -36,7 +35,6 @@ export default function Home() {
       next={dispatchLoadCardsRequest}
       hasMore={hasMore}
       height={"100vh"}
-      ref={infiniteScroll}
       endMessage={
         <p style={{ textAlign: "center" }}>
           {!cards.length && "Looks like there are no more cards!"}
