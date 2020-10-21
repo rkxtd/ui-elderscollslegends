@@ -26,3 +26,6 @@ In case Build Status is green - Heroku should have a latest version of the sourc
 * `npm run prod` Run `http-server` to serve compiled sources from `dist/` folder.
 * `npm run start` Run `build` and if successful run `prod`.
 
+## Service Worker and offline work.
+UI has installed service worker for offline usage. It caches all requests, and in case website goes offline,
+SW is going to serve statics and API calls from cache. Feature is working only in Chrome.
