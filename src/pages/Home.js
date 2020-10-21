@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import CardsGrid from "../../components/CardsGrid";
-import Spinner from "../../components/Spinner";
-import { Context as CardsContext, useApiRequest } from "../../stores/Cards";
+import CardsGrid from "../components/CardsGrid";
+import Spinner from "../components/Spinner";
+import { Context as CardsContext, useApiRequest } from "../stores/Cards";
 
 const CARDS_PER_PAGE = 20;
 
