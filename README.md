@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/xcomanche/ui-elderscollslegends.svg?branch=main)](https://travis-ci.org/xcomanche/ui-elderscollslegends)
-[![dependencies Status](https://david-dm.org/xcomanche/ui-elderscollslegends/status.svg)](https://david-dm.org/xcomanche/ui-elderscollslegends)
-[![devDependencies Status](https://david-dm.org/xcomanche/ui-elderscollslegends/dev-status.svg)](https://david-dm.org/xcomanche/ui-elderscollslegends?type=dev)
-[![Coverage Status](https://coveralls.io/repos/github/xcomanche/ui-elderscollslegends/badge.svg?branch=main)](https://coveralls.io/github/xcomanche/ui-elderscollslegends?branch=main)
+[![Build Status](https://travis-ci.org/rkxtd/ui-elderscollslegends.svg?branch=main)](https://travis-ci.org/rkxtd/ui-elderscollslegends)
+[![dependencies Status](https://david-dm.org/rkxtd/ui-elderscollslegends/status.svg)](https://david-dm.org/rkxtd/ui-elderscollslegends)
+[![devDependencies Status](https://david-dm.org/rkxtd/ui-elderscollslegends/dev-status.svg)](https://david-dm.org/rkxtd/ui-elderscollslegends?type=dev)
+[![Coverage Status](https://coveralls.io/repos/github/v/ui-elderscollslegends/badge.svg?branch=main)](https://coveralls.io/github/rkxtd/ui-elderscollslegends?branch=main)
 
 # UI For Elder Scrolls: Legends DataBase.
 
