@@ -68,8 +68,18 @@ export default function Header() {
 
   const handleEnter = (event) => {
     const { value } = event.target;
+    let searchTerm = "";
+    let creatureType = "";
+
     if (event.keyCode === 13) {
-      dispatch({ type: SEARCH, value });
+
+      if (value.indexOf(':') !== -1) {
+        [searchTerm, creatureType] = value.split(':');
+      } else {
+        searchTerm = value;
+      }
+
+      dispatch({ type: SEARCH, searchTerm, creatureType });
     }
   };
   return (

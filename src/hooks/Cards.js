@@ -25,7 +25,7 @@ export const useCardsApiRequest = (pageSize) => {
    * @async
    */
   const makeRequest = async () => {
-    const { pageNum, searchTerm, isLoading } = state;
+    const { pageNum, searchTerm, creatureType, isLoading } = state;
     // Skip additional load if we didn't finished previous part.
     if (isLoading) {
       return;
@@ -33,7 +33,11 @@ export const useCardsApiRequest = (pageSize) => {
 
     dispatch(load());
     try {
-      const cards = await getCards({ pageSize, pageNum, searchTerm });
+      const cards = await getCards({
+        pageSize,
+        pageNum,
+        searchTerm,
+        creatureType });
       dispatch(success(cards, cards.length === pageSize));
     } catch (e) {
       dispatch(error(e.message));
@@ -47,8 +51,9 @@ export const useCardsApiRequest = (pageSize) => {
    * @function setSearch
    * @param {string} searchTerm - Indicates new search term for API.
    */
-  const setSearch = (searchTerm) => {
-    dispatch(search(searchTerm));
+  const setSearch = (searchTerm, creatureType) => {
+
+    dispatch(search(searchTerm, creatureType));
   };
 
   return [state, makeRequest, setSearch];

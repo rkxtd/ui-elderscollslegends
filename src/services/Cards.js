@@ -12,11 +12,18 @@ const PAGE_SIZE = 100;
  * @returns {Promise<*>}
  */
 export async function getCards(options) {
-  const { pageSize = PAGE_SIZE, pageNum: page, searchTerm: name } = options;
+  const { pageSize = PAGE_SIZE,
+    pageNum: page,
+    searchTerm: name,
+    creatureType: type } = options;
   const params = { pageSize, page };
 
   if (name) {
     params.name = name;
+  }
+
+  if (type) {
+    params.type = type;
   }
 
   try {

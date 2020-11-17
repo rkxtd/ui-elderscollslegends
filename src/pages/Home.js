@@ -10,10 +10,10 @@ const CARDS_PER_PAGE = 20;
 
 export default function Home() {
   const {
-    store: { searchTerm: inputSearchTerm },
+    store: { searchTerm: inputSearchTerm, creatureType: inputCreatureType },
   } = useContext(CardsContext);
   const [
-    { isLoading, cards, hasMore, searchTerm, error },
+    { isLoading, cards, hasMore, searchTerm, creatureType, error },
     dispatchLoadCardsRequest,
     resetSearch,
   ] = useCardsApiRequest(CARDS_PER_PAGE);
@@ -21,13 +21,13 @@ export default function Home() {
   // Watcher for Search Component changes.
   useEffect(() => {
     // Trigger searchTerm change in store.
-    resetSearch(inputSearchTerm);
-  }, [inputSearchTerm]);
+    resetSearch(inputSearchTerm, inputCreatureType);
+  }, [inputSearchTerm, inputCreatureType]);
 
   // Watcher for changes in searchTerm within store.
   useEffect(() => {
     dispatchLoadCardsRequest();
-  }, [searchTerm]);
+  }, [searchTerm, creatureType]);
 
   return (
     <InfiniteScroll

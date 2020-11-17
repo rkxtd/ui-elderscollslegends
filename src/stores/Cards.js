@@ -11,6 +11,7 @@ import React from "react";
  */
 export const initialState = {
   searchTerm: "",
+  creatureType: "",
   isLoading: false,
   cards: [],
   hasMore: true,
@@ -35,11 +36,11 @@ export function load() {
 
 /**
  * Dispatched to clear the store from old data and set new search term.
- * @param {string} value - New Search Term.
- * @returns {{type: string, value: string}}
+ * @param {string} searchTerm - New Search Term.
+ * @returns {{searchTerm: string, creatureType: *, type: string}}
  */
-export function search(value) {
-  return { type: SEARCH, value };
+export function search(searchTerm, creatureType) {
+  return { type: SEARCH, searchTerm, creatureType };
 }
 
 /**
@@ -61,11 +62,11 @@ export function error(error) {
   return { type: ERROR, error };
 }
 
-export const reducer = (state, { type, value, cards, hasMore, error }) => {
+export const reducer = (state, { type, searchTerm, creatureType, cards, hasMore, error }) => {
   switch (type) {
     case SEARCH:
       // When Search happens, we should overwrite existing state with initial one.
-      return { ...initialState, searchTerm: value };
+      return { ...initialState, searchTerm, creatureType };
     case SUCCESS:
       return {
         ...state,
